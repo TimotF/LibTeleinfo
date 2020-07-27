@@ -685,15 +685,19 @@ ValueList * TInfo::checkLine(char * pline)
   while ( p < pend ) {
     // start of token value
     if ( *p==' ' && ptok) {           
-      // Isolate token name
-      *p++ = '\0';
-
+      
       // 1st space, it's the label value
-      if (!pvalue)
+      if (!pvalue){
+        *p++ = '\0'; // Isolate token name
         pvalue = p;
-      else
-        // 2nd space, so it's the checksum
-        checksum = *p;
+      }
+      else{ 
+        if(*(p+2)=='\r'){ // last space, so it's the checksum
+          *p++ = '\0'; // Isolate value
+          checksum = *p;
+        }
+      }
+        
     }           
     // new line ? ok we got all we need ?
     
