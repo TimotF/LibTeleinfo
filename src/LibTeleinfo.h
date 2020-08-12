@@ -130,13 +130,13 @@ class TInfo
     char *        valueGet(char * name, char * value);
     boolean       listDelete();
     unsigned char calcChecksum(char *etiquette, char *valeur) ;
+    int           labelCount();
 
   private:
     void          clearBuffer();
     ValueList *   valueAdd (char * name, char * value, uint8_t checksum, uint8_t * flags);
     boolean       valueRemove (char * name);
     boolean       valueRemoveFlagged(uint8_t flags);
-    int           labelCount();
     void          customLabel( char * plabel, char * pvalue, uint8_t * pflags) ;
     ValueList *   checkLine(char * pline) ;
 
