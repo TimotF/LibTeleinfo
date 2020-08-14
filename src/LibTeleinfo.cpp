@@ -213,14 +213,15 @@ ValueList * TInfo::valueAdd(char * name, char * value, uint8_t checksum, uint8_t
         if (lgname==strlen(me->name) && strcmp(me->name, name )==0) {
 
           // Already got also this value  return US
+          me->flags &= TINFO_FLAGS_UPDATED_SINCE_LAST_READ; // Reset all flags but that one
           if (lgvalue==strlen(me->value) && strcmp(me->value, value) == 0) {
             *flags |= TINFO_FLAGS_EXIST;
-            me->flags = *flags;
+            me->flags |= *flags;
             return ( me );
           } else {
             // We changed the value
-            *flags |= TINFO_FLAGS_UPDATED;
-            me->flags = *flags ;
+            *flags |= TINFO_FLAGS_UPDATED | TINFO_FLAGS_UPDATED_SINCE_LAST_READ;
+            me->flags |= *flags ;
             // Do we have enought space to hold new value ?
             if (strlen(me->value) >= lgvalue ) {
               // Copy it

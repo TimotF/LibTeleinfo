@@ -102,7 +102,9 @@ enum _State_e {
 #define TINFO_FLAGS_ADDED    0x02
 #define TINFO_FLAGS_EXIST    0x04
 #define TINFO_FLAGS_UPDATED  0x08
+#define TINFO_FLAGS_UPDATED_SINCE_LAST_READ  0x10
 #define TINFO_FLAGS_ALERT    0x80 /* This will generate an alert */
+
 
 // Local buffer for one line of teleinfo 
 // maximum size, I think it should be enought
